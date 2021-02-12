@@ -1,0 +1,22 @@
+{% extends "blogger/base.html" %}
+{% block title %}Delete Blog Confirmation{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header bg-warning">
+  <h3>Delete: {{blog.blog_name}}</h3>
+  </div>
+  <div class="card-body">
+<h3>Are you sure?</h3>
+<form method="POST">
+	<table>
+	{% csrf_token %}
+	
+	</table>
+</br>
+	 <button type="submit" class="btn btn-primary">Delete</button>
+	 <a href="{% url 'blogger:details' pk=blog.id %}" class="btn btn-dark">Cancel</a>
+	</form>
+
+  </div>
+</div>
+{% endblock %}

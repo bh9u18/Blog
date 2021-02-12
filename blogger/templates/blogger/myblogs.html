@@ -1,0 +1,50 @@
+{% extends "blogger/base.html" %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-secondary">
+  <div class="container">
+    <h1 class="display-4-danger">Blogs of Mine!</h1>  
+  </div>
+</div>
+
+{% if blogs %}
+
+	{% for blog in blogs %}
+
+		<div class="card-fluid border-danger mb-5 "style="border-color:red">
+  			<h5 class="card-header bg-warning">{{blog.blog_name}}</h5>
+  			<div class="card-body">
+    			<h6 class="card-subtitle mb-2 text-muted">Published on {{blog.date}}</br>Category : {{blog.category}}  </h6>
+    			<p class="card-text">{{blog.blog_text}}</p>
+    			<a href="{% url 'blogger:details' blog.id%}" class="btn btn-dark">Go to Blog</a>
+  			</div>
+		</div>
+	{% endfor %}
+	
+{% else %}
+	<p>No blogs are available.</p>
+{% endif %}
+{% if is_paginated %}
+<nav aria-label="page navigation example">
+	<ul class="pagination">
+{% if page_obj.has_previous %}
+
+		<li class="page-item " ><a class="page-link bg-dark " href="?page={{ page_obj.previous_page_number }}">« PREV</a></li>
+{% endif %}
+
+{% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active"><a class="page-link bg-danger" href="#">{{ i }}</a></li>
+      {% else %}
+        <li><a class="page-link bg-dark" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+{% if page_obj.has_next %}
+		<li class="page-item"><a class="page-link bg-dark" href="?page={{ page_obj.next_page_number }}">NEXT »</a>
+		</li>
+{% endif %}
+</ul>
+</nav>
+{% endif %} 
+
+{% endblock %}

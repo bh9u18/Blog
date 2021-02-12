@@ -1,0 +1,35 @@
+{% extends "blogger/base.html" %}
+{% block content %}
+<div class="card">
+  <div class="card-header bg-warning">
+    Log In
+  </div>
+  <div class="card-body">
+<form action="{% url 'blogger:login' %}" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputUsername">Username</label>
+    <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp" placeholder="enter username">
+      </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+
+{% for message in messages %}
+      <p id= messages>{{message}}
+{% endfor %}
+
+<div class='nt-4'>
+        <div class="d-flex justify-content-left links">
+          Don't have an account?<a href="{% url 'blogger:registeration' %}" class="ml-2">register</a>
+        </div>
+      </div>
+</div>
+</div>
+
+{% endblock %}

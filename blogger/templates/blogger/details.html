@@ -1,0 +1,18 @@
+{% extends "blogger/details_base.html"  %}
+
+{% block content %}
+<div class="card">
+  <h3 class="card-header bg-success">{{blog.blog_name}}</h3>
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted">Published on {{blog.date}} by {{blog.author}}</br> Category:{{blog.category}}</h6>
+    <p class="card-text">{{blog.blog_text|safe}}</p>
+    {% if request.user.is_authenticated and blog.author == request.user %}
+    <a href="{% url 'blogger:editblog' pk=blog.pk %}" class="btn btn-dark">Edit</a>
+    <a href="{% url 'blogger:deleteblog' pk=blog.pk %}" class="btn btn-dark">Delete</a>
+    {% endif %}
+    <a href="{% url 'blogger:index' %}" class="btn btn-dark">Go Back</a>
+    
+    
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "blogger/base.html" %}
+{% block title %}Edit Blog{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header bg-warning">
+    Edit Blog
+  </div>
+  <div class="card-body">
+
+<form method="POST">
+	<table>
+	{% csrf_token %}
+	{{ form.as_table}}
+	</table>
+</br>
+	 <button type="submit" class="btn btn-primary">Update</button>
+	 <a href="{% url 'blogger:index' %}" class="btn btn-dark">Cancel</a>
+	</form>
+
+  </div>
+</div>
+{% endblock %}

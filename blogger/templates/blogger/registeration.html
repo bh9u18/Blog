@@ -1,0 +1,62 @@
+{% extends "blogger/base.html"  %}
+{% block content %}
+<div class="card">
+  <div class="card-header bg-warning">
+    Registeration
+  </div>
+  <div class="card-body">
+    <form action="" method="POST">
+      {% csrf_token %}  
+  
+<div class="form-group row">
+    <label for="userName"class="col-sm-2 col-form-label">Username</label>
+    <div class="cpl-sm-10">
+    {{form.username}}
+  </div>
+</div>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <div class="cpl-sm-10">
+      {{form.email}}
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="cpl-sm-10">
+      {{form.password1}}
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword4" class="col-sm-2 col-form-label">Confirm Password</label>
+    <div class="cpl-sm-10">
+      {{form.password2}}
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="cpl-sm-10">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+  </div>
+  {{form.errors}}
+</form>
+      <div class='nt-4'>
+        <div class="d-flex justify-content-left links">
+          Already have an account?<a href="{% url 'blogger:login' %}" class="ml-2">Login</a>
+        </div>
+      </div>
+
+  </div>
+  <script>
+
+    var form_fields=document.getElementsbyTagName('input')
+    form_fields[1].placeholder='Username..';
+    from_feilds[2].placeholder='Email..';
+    form_fields[3].placeholder='Enter Password';
+    form_fields[4].placeholder='Confirm Password';
+
+    for( var field in form_fields){
+      form_fields[field].className += 'form-control'
+    }
+  </script>
+{% endblock %}
